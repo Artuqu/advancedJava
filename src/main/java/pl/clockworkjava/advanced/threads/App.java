@@ -16,6 +16,7 @@ public class App {
 //        thirdThread.start();
 
         Runnable myRunnable = new MyRunnable();
+
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
@@ -24,12 +25,21 @@ public class App {
         };
 
 
-        Thread fourth = new Thread(runnable, "Runnable");
+        Thread fourth = new Thread(runnable, "Runnable with injection");
         Thread fifth = new Thread(myRunnable, "Runnable 1");
 
         fifth.start();
 
         fourth.start();
+
+
+        //Thread with lambda
+
+        Thread lambda = new Thread(
+                () -> System.out.println("Wątek aplikacji z lambda (runnable) to: " + Thread.currentThread().getName()),
+                "RunnableWithLambda");
+        lambda.start();
+
 
     }
 }
