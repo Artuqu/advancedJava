@@ -1,14 +1,17 @@
 package threadWithSleep;
 
-import java.util.concurrent.TimeUnit;
 
-public class Main {
+
+public class Sleep {
     public static void main(String[] args) {
         int a = 4;
         int b = 5;
         if (a == b) {
             System.out.println(b);
+        } else {
+            System.out.println("B and A are different numbers");
         }
+
 
         Thread lambda = new Thread(
                 () -> {
@@ -29,3 +32,4 @@ public class Main {
         lambda.start();
     }
 }
+
