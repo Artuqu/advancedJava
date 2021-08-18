@@ -1,13 +1,15 @@
-package ExecutorPool;
+package ExecutorService;
 
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
-public class ExecutorPool {
+public class ScheduledExecutor {
+
     public static void main(String[] args) {
 
-        ExecutorService exp = Executors.newFixedThreadPool(2);
+        System.out.println("Main thread of application: " + Thread.currentThread().getName());
+        ScheduledExecutorService exS = Executors.newScheduledThreadPool(2);
 
         Runnable worker1 = () -> {
             try {
@@ -38,9 +40,10 @@ public class ExecutorPool {
                 e.printStackTrace();
             }
         };
-        exp.submit(worker1);
-        exp.submit(worker2);
-        exp.submit(worker3);
-        exp.shutdown();
+//        exS.schedule(worker1, 5, TimeUnit.SECONDS);
+//        exS.schedule(worker2, 4, TimeUnit.SECONDS);
+//        exS.schedule(worker3, 8, TimeUnit.SECONDS);
+//        exS.shutdown();
+        exS.scheduleAtFixedRate(worker1,0,6,TimeUnit.SECONDS);
     }
 }
