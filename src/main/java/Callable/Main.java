@@ -1,4 +1,5 @@
 package Callable;
+
 import java.util.concurrent.*;
 
 public class Main {
@@ -23,8 +24,19 @@ public class Main {
         };
 
         Future<Integer> result = exs.submit(answerToEverything);
-        Integer r = result.get();
-        System.out.println(r);
+
+//        while (!result.isDone()) {
+//            System.out.println("Result not ready yet");
+//            TimeUnit.SECONDS.sleep(2);
+//        }
+        Integer r;
+        try {
+            r = result.get(2, TimeUnit.SECONDS);
+            System.out.println(r);
+        } catch (TimeoutException e) {
+            e.printStackTrace();
+        }
+
         exs.shutdown();
     }
 }
