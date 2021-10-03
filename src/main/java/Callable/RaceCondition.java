@@ -25,8 +25,15 @@ public class RaceCondition {
 class Counter {
     private int count;
 
-    public void increase() {
-        count++;
+//    only one thread has access to method by synchronized
+     public void increase() {
+         System.out.println("First step");
+         System.out.println("Second step");
+
+         synchronized (this){
+             count++;}
+
+         System.out.println("Last step");
     }
 
     public int getCount() {
