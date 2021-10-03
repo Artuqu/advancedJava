@@ -4,6 +4,7 @@ import java.util.concurrent.*;
 
 public class completableFuture {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
+
         ExecutorService exs = Executors.newFixedThreadPool(2);
 
         CompletableFuture.runAsync(

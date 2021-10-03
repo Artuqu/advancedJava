@@ -5,6 +5,7 @@ import java.util.concurrent.*;
 public class completableFutureNotBlocked {
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
+
         ExecutorService exs = Executors.newFixedThreadPool(5);
 
         CompletableFuture.runAsync(
