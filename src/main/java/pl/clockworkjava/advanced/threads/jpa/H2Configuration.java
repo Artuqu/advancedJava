@@ -11,20 +11,11 @@ public class H2Configuration {
     private static String user = "";
     private static String password = "";
 
-    public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        Connection conn = getDBConnection();
-        if (conn!=null){
-            System.out.println("Connection success!");
-        }
-
-
-    }
-    private static Connection getDBConnection() throws ClassNotFoundException, SQLException {
+    public static Connection getDBConnection() throws ClassNotFoundException, SQLException {
         Connection connection = null;
 
         Class.forName(h2Driver);
         connection = DriverManager.getConnection(h2Addr, user, password);
-
 
         return connection;
     }
