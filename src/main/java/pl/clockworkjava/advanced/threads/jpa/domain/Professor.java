@@ -6,7 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 
 @Entity
-public class Student {
+public class Professor {
+
 
     @Id
     private int id;
@@ -21,14 +22,10 @@ public class Student {
     private Address address;
 
 
-    public Student(int id, String name, String phone) {
+    public Professor(int id, String name, String phone, String street, String postalCode, String apartment, String city) {
         this.id = id;
         this.name = name;
         this.phone = phone;
-    }
-
-
-    private Student() {
 
     }
 
@@ -56,9 +53,11 @@ public class Student {
         this.phone = phone;
     }
 
+
+
     @Override
     public String toString() {
-        return "Student{" +
+        return "Professor{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
