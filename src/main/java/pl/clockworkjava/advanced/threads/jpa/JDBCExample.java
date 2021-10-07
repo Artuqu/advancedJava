@@ -15,8 +15,8 @@ public class JDBCExample {
 
         createTableForStudent();
 
-        Student pawel = new Student(1, "Paweł");
-        Student marek = new Student(2, "Marek");
+        Student pawel = new Student(1, "Paweł","000");
+        Student marek = new Student(2, "Marek", "7899");
 
         insertStudent(pawel);
         insertStudent(marek);
@@ -35,7 +35,8 @@ public class JDBCExample {
 
             int id = resultStudent.getInt("id");
             String name = resultStudent.getString("name");
-            students.add(new Student(id,name));
+            String phone = resultStudent.getString("phone");
+            students.add(new Student(id,name,phone));
         }
         return students;
     }
