@@ -1,10 +1,12 @@
 package Hibernate;
 
+import pl.clockworkjava.advanced.threads.jpa.domain.Index;
 import pl.clockworkjava.advanced.threads.jpa.domain.Student;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public class JpaApp {
@@ -16,12 +18,22 @@ public class JpaApp {
 //Create
         createStudent();
 //Read
-        readStudents();
+//        readStudents();
 // Update
-        updateStudent();
+//        updateStudent();
 // Delete
 
         deleteStudent();
+
+        Student kamil = em.merge(new Student(6, "Kamil", "0000"));
+        Index index = em.merge(new Index(0, "1234"));
+        kamil.setIndex(index);
+        System.out.println(kamil);
+
+        index.setOwner(kamil);
+        em.merge(index);
+        Index findOwner = em.find(Index.class, 0);
+        System.out.println(findOwner);
     }
 
     private static void deleteStudent() {
@@ -32,7 +44,7 @@ public class JpaApp {
     }
 
     private static void updateStudent() {
-    Student kinga = new Student(3, "Kinga", "229900");
+        Student kinga = new Student(3, "Kinga", "229900");
         em.getTransaction().begin();
         Student student = em.merge(kinga);
 

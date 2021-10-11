@@ -1,9 +1,6 @@
 package pl.clockworkjava.advanced.threads.jpa.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Student {
@@ -19,6 +16,9 @@ public class Student {
 
     @Embedded
     private Address address;
+
+    @OneToOne
+    private Index index;
 
 
     public Student(int id, String name, String phone) {
@@ -56,12 +56,22 @@ public class Student {
         this.phone = phone;
     }
 
+    public Index getIndex() {
+        return index;
+    }
+
+    public void setIndex(Index index) {
+        this.index = index;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
+                ", address=" + address +
+                ", index=" + index +
                 '}';
     }
 }
