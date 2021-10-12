@@ -6,6 +6,7 @@ import javax.persistence.*;
 public class Student {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     @Column(nullable = false)
@@ -17,19 +18,22 @@ public class Student {
     @Embedded
     private Address address;
 
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL)
     private Index index;
 
 
-    public Student(int id, String name, String phone) {
-        this.id = id;
+    public Student(String name) {
         this.name = name;
-        this.phone = phone;
     }
 
 
     private Student() {
 
+    }
+
+    public Student(String name, String indexNumber) {
+        this.name = name;
+        this.index = new Index(indexNumber);
     }
 
     public int getId() {

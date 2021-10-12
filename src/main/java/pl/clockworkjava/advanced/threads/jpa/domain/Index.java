@@ -1,13 +1,12 @@
 package pl.clockworkjava.advanced.threads.jpa.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Index {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private String number;
@@ -42,8 +41,7 @@ public class Index {
     public Index() {
     }
 
-    public Index(int id, String number) {
-        this.id = id;
+    public Index(String number) {
         this.number = number;
     }
 
