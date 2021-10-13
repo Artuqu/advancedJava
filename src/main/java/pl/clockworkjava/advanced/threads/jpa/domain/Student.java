@@ -21,6 +21,9 @@ public class Student {
     @OneToOne (cascade = CascadeType.ALL)
     private Index index;
 
+    @ManyToOne
+    private University university;
+
 
     public Student(String name) {
         this.name = name;
@@ -68,6 +71,22 @@ public class Student {
         this.index = index;
     }
 
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public University getUniversity() {
+        return university;
+    }
+
+    public void setUniversity(University university) {
+        this.university = university;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -78,4 +97,6 @@ public class Student {
                 ", index=" + index +
                 '}';
     }
+
+
 }

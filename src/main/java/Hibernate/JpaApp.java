@@ -31,11 +31,10 @@ public class JpaApp {
         Index index = em.merge(new Index("1234"));
         kamil.setIndex(index);
 //
-//        System.out.println(index);
+//      System.out.println(index);
         System.out.println(kamil);
 //
 //        index.setOwner(kamil);
-//        em.merge(index);
 //        Index findOwner = em.find(Index.class, 2);
 //        System.out.println(findOwner);
 

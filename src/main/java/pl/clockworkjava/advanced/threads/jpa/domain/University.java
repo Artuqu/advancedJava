@@ -17,6 +17,7 @@ public class University {
     }
 
     @OneToMany
+    (mappedBy = "university")
     private Set<Student> students;
 
     public University(String name) {
@@ -26,5 +27,38 @@ public class University {
 
     public void addStudent (Student student){
         students.add(student);
+    }
+
+    @Override
+    public String toString() {
+        return "University{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", students=" + students +
+                '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(Set<Student> students) {
+        this.students = students;
     }
 }
