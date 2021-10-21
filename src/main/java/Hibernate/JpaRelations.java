@@ -13,7 +13,7 @@ public class JpaRelations {
 
     public static void main(String[] args) {
         em.getTransaction().begin();
-        Student beata = em.merge(new Student("Be", "22222"));
+        Student beata = em.merge(new Student("Beata", "22222"));
         University up = em.merge(new University("KSW"));
 
         beata.setUniversity(up);

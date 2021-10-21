@@ -1,12 +1,14 @@
 package pl.clockworkjava.advanced.threads.jpa.domain;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Student {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(nullable = false)
@@ -24,6 +26,9 @@ public class Student {
     @ManyToOne
     private University university;
 
+    @ManyToMany
+    private Set <Classes> classes;
+
 
     public Student(String name) {
         this.name = name;
@@ -37,6 +42,7 @@ public class Student {
     public Student(String name, String indexNumber) {
         this.name = name;
         this.index = new Index(indexNumber);
+        this.classes = new HashSet<>();
     }
 
     public int getId() {
@@ -96,6 +102,10 @@ public class Student {
                 ", address=" + address +
                 ", index=" + index +
                 '}';
+    }
+
+    public void addClasses (Classes classes){
+        this.classes.add(classes);
     }
 
 
