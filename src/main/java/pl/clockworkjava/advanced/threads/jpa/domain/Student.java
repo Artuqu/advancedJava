@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@NamedQuery(name = "Student.getAll", query = "from Student")
+@NamedQuery(name = "Student.byName", query = "SELECT s FROM Student s WHERE s.name=:name")
 public class Student {
 
     @Id
@@ -20,14 +22,14 @@ public class Student {
     @Embedded
     private Address address;
 
-    @OneToOne (cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL)
     private Index index;
 
     @ManyToOne
     private University university;
 
     @ManyToMany
-    private Set <Classes> classes;
+    private Set<Classes> classes;
 
 
     public Student(String name) {
@@ -104,7 +106,7 @@ public class Student {
                 '}';
     }
 
-    public void addClasses (Classes classes){
+    public void addClasses(Classes classes) {
         this.classes.add(classes);
     }
 

@@ -1,11 +1,9 @@
 package Hibernate;
 
 import pl.clockworkjava.advanced.threads.jpa.QueryResult;
-import pl.clockworkjava.advanced.threads.jpa.domain.Index;
 import pl.clockworkjava.advanced.threads.jpa.domain.Student;
-
 import javax.persistence.*;
-import java.util.List;
+
 
 public class JPQL {
 
@@ -20,14 +18,20 @@ public class JPQL {
 //        System.out.println(resultList);
         TypedQuery<QueryResult> q = em.createQuery("SELECT new pl.clockworkjava.advanced.threads.jpa.QueryResult(s.name, s.index.number) FROM Student s WHERE s.name IN ('John', 'Joanna')", QueryResult.class);
 
-        q.getResultList().forEach(System.out::println);
+        TypedQuery<QueryResult> group = em.createQuery("SELECT new pl.clockworkjava.advanced.threads.jpa.QueryResult(s.name, COUNT(s)) FROM Student s GROUP BY s.name", QueryResult.class);
+//        group.getResultList().forEach(System.out::println);
+//        q.getResultList().forEach(System.out::println);
 
+        em.createNamedQuery("Student.getAll", Student.class).getResultList().forEach(System.out::println);
+        em.createNamedQuery("Student.byName", Student.class).setParameter("name", "John").getResultList().forEach(System.out::println);
     }
 
     private static void createData() {
         em.getTransaction().begin();
-        Student john = em.merge(new Student("John", "3333"));
-        Student joanna = em.merge(new Student("Joanna", "2465"));
+        em.merge(new Student("John", "3333"));
+        em.merge(new Student("Joanna", "2465"));
+        em.merge(new Student("Joanna", "2499"));
+        em.merge(new Student("Joanna", "2586"));
         em.getTransaction().commit();
     }
 }

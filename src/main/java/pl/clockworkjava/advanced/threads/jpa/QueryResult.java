@@ -4,6 +4,12 @@ public class QueryResult {
 
     private String studentName;
     private String indexNumber;
+    private long count;
+
+    public QueryResult(String studentName, long count) {
+        this.studentName = studentName;
+        this.count = count;
+    }
 
     public QueryResult(String studentName, String indexNumber) {
         this.studentName = studentName;
@@ -15,6 +21,7 @@ public class QueryResult {
         return "QueryResult{" +
                 "studentName='" + studentName + '\'' +
                 ", indexNumber='" + indexNumber + '\'' +
+                ", count=" + count +
                 '}';
     }
 }
