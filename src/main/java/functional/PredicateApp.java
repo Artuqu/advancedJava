@@ -25,7 +25,7 @@ public class PredicateApp {
 
     }
 
-    private static List<FinalStudent> filterStudents(List<FinalStudent> students, Predicate<FinalStudent> predicate) {
+    public static List<FinalStudent> filterStudents(List<FinalStudent> students, Predicate<FinalStudent> predicate) {
         List<FinalStudent> result = new ArrayList<>();
         for (FinalStudent fs : students) {
             if (predicate.test(fs)) {
@@ -36,7 +36,7 @@ public class PredicateApp {
         return result;
     }
 
-    private static List<FinalStudent> createData() {
+    public static List<FinalStudent> createData() {
         List<FinalStudent> result = new ArrayList<>();
         result.add(new FinalStudent("Marek", 30, "5678"));
         result.add(new FinalStudent("Marcin", 33, "5679"));
