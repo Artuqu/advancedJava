@@ -34,4 +34,13 @@ final public class FinalStudent {
     public String getStudentInfo() {
         return this.name + " " + this.age;
     }
+
+    @Override
+    public String toString() {
+        return "FinalStudent{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                ", finalIndex=" + finalIndex +
+                '}';
+    }
 }

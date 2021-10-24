@@ -10,4 +10,11 @@ final public class FinalIndex {
     public String getIndexNumber() {
         return indexNumber;
     }
+
+    @Override
+    public String toString() {
+        return "FinalIndex{" +
+                "indexNumber='" + indexNumber + '\'' +
+                '}';
+    }
 }
