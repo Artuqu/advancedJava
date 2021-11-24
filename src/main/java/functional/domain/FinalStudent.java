@@ -43,4 +43,9 @@ final public class FinalStudent {
                 ", finalIndex=" + finalIndex +
                 '}';
     }
+
+
+    public FinalStudent changeIndexNumber(String newIndexNumber) {
+        return new FinalStudent(this.name, this.age, newIndexNumber);
+    }
 }

@@ -5,6 +5,7 @@ import functional.domain.FinalStudent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 public class PredicateApp {
 
@@ -41,6 +42,15 @@ public class PredicateApp {
         result.add(new FinalStudent("Marek", 30, "5678"));
         result.add(new FinalStudent("Marcin", 33, "5679"));
         result.add(new FinalStudent("Michał", 22, "5680"));
+        result.add(new FinalStudent("Mietek", 35, "5681"));
         return result;
+    }
+
+    public static Stream<FinalStudent> createStreamData() {
+        FinalStudent marek = new FinalStudent("Marek", 30, "5678");
+        FinalStudent marcin = new FinalStudent("Marcin", 33, "5679");
+        FinalStudent michal = new FinalStudent("Michał", 22, "5680");
+        FinalStudent mietek = new FinalStudent("Mietek", 35, "5681");
+        return Stream.of(marek, marcin, michal, mietek);
     }
 }
