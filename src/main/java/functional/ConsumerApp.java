@@ -1,15 +1,14 @@
 package functional;
 
 import functional.domain.FinalStudent;
-import hibernate.JPQL;
-
 import java.util.List;
 import java.util.function.*;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 import static functional.PredicateApp.createData;
-import static functional.PredicateApp.filterStudents;
+import static functional.PredicateApp.createStreamData;
+
 
 public class ConsumerApp {
 
@@ -52,6 +51,19 @@ public class ConsumerApp {
 
         IntStream.rangeClosed(6, 100).filter(i -> i % 2 == 0).forEach(System.out::println);
 
+        createStreamData()
+                .filter(over30)
+                .map(FinalStudent::getName)
+                .filter(name -> name.startsWith("Mietek"))
+                .map(String::toUpperCase)
+                .forEach(System.out::println);
+
+        createStreamData()
+                .map(finalStudent -> finalStudent.getFinalIndex())
+                .filter(optionalIndex -> optionalIndex.isPresent())
+                .map(optionalIndex -> optionalIndex.get())
+                .map(finalIndex -> finalIndex.getIndexNumber())
+                .forEach(System.out::println);
     }
 
     private static void consumeStudents(List<FinalStudent> students, Consumer<FinalStudent> consumer) {
