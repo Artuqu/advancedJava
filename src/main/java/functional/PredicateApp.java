@@ -51,6 +51,7 @@ public class PredicateApp {
         FinalStudent marcin = new FinalStudent("Marcin", 33, "5679");
         FinalStudent michal = new FinalStudent("Michał", 22, "5680");
         FinalStudent mietek = new FinalStudent("Mietek", 35, "5681");
-        return Stream.of(marek, marcin, michal, mietek);
+        FinalStudent john = new FinalStudent("John", 32, "5682");
+        return Stream.of(marek, marcin, michal, mietek, john);
     }
 }

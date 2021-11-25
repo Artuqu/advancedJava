@@ -1,6 +1,7 @@
 package functional;
 
 import functional.domain.FinalStudent;
+
 import java.util.List;
 import java.util.function.*;
 import java.util.stream.IntStream;
@@ -51,19 +52,37 @@ public class ConsumerApp {
 
         IntStream.rangeClosed(6, 100).filter(i -> i % 2 == 0).forEach(System.out::println);
 
-        createStreamData()
-                .filter(over30)
-                .map(FinalStudent::getName)
-                .filter(name -> name.startsWith("Mietek"))
-                .map(String::toUpperCase)
-                .forEach(System.out::println);
 
-        createStreamData()
-                .map(finalStudent -> finalStudent.getFinalIndex())
-                .filter(optionalIndex -> optionalIndex.isPresent())
-                .map(optionalIndex -> optionalIndex.get())
-                .map(finalIndex -> finalIndex.getIndexNumber())
-                .forEach(System.out::println);
+//        createStreamData()
+//                .filter(over30)
+//                .map(FinalStudent::getName)
+//                .filter(name -> name.startsWith("Mietek"))
+//                .map(String::toUpperCase)
+//                .forEach(System.out::println);
+
+        Stream<FinalStudent> streamData = createStreamData();
+        streamData
+                .filter(over30)
+                .findFirst().ifPresent(finalStudent -> System.out.println("Mamy studenta " + finalStudent.getName()));
+
+        boolean john = createStreamData()
+                .map(FinalStudent::getName)
+                .anyMatch(name -> name.equals("John"));
+        System.out.println(john);
+
+        boolean b = createStreamData()
+                .map(FinalStudent::getAge)
+                .allMatch(age -> age > 25);
+        System.out.println(b);
+
+//        System.out.println(streamData);
+//        createStreamData()
+//                .map(finalStudent -> finalStudent.getFinalIndex())
+//                .filter(optionalIndex -> optionalIndex.isPresent())
+//                .map(optionalIndex -> optionalIndex.get())
+//                .map(finalIndex -> finalIndex.getIndexNumber())
+//                .forEach(System.out::println);
+
     }
 
     private static void consumeStudents(List<FinalStudent> students, Consumer<FinalStudent> consumer) {
