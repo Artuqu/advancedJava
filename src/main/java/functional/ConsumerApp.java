@@ -3,6 +3,7 @@ package functional;
 import functional.domain.FinalStudent;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.function.*;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
@@ -74,6 +75,14 @@ public class ConsumerApp {
                 .map(FinalStudent::getAge)
                 .allMatch(age -> age > 25);
         System.out.println(b);
+
+        Double sumOfRandomDoubles = Stream.generate(Math::random).limit(10).reduce(0.0, (aDouble, aDouble2) -> aDouble + aDouble2);
+
+        System.out.println("To jest " + sumOfRandomDoubles);
+
+        Optional<Integer> maxAgeOfStudent = createStreamData().map(FinalStudent::getAge).reduce((x, y) -> x > y ? x : y);
+
+        maxAgeOfStudent.ifPresent(System.out::println);
 
 //        System.out.println(streamData);
 //        createStreamData()
