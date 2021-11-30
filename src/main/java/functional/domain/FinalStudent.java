@@ -1,8 +1,9 @@
 package functional.domain;
 
+import java.util.Objects;
 import java.util.Optional;
 
-final public class FinalStudent {
+final public class FinalStudent implements Comparable<FinalStudent> {
 
     private String name;
     private int age;
@@ -47,5 +48,23 @@ final public class FinalStudent {
 
     public FinalStudent changeIndexNumber(String newIndexNumber) {
         return new FinalStudent(this.name, this.age, newIndexNumber);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FinalStudent that = (FinalStudent) o;
+        return Objects.equals(finalIndex, that.finalIndex);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(finalIndex);
+    }
+
+    @Override
+    public int compareTo(FinalStudent o) {
+     return this.name.compareTo(o.getName());
     }
 }

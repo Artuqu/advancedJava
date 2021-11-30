@@ -5,6 +5,7 @@ import functional.domain.FinalStudent;
 import java.util.List;
 import java.util.Optional;
 import java.util.function.*;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
@@ -81,8 +82,20 @@ public class ConsumerApp {
         System.out.println("To jest " + sumOfRandomDoubles);
 
         Optional<Integer> maxAgeOfStudent = createStreamData().map(FinalStudent::getAge).reduce((x, y) -> x > y ? x : y);
-
         maxAgeOfStudent.ifPresent(System.out::println);
+
+        List<Integer> collectStudentsAge = createStreamData().map(FinalStudent::getAge).collect(Collectors.toList());
+        System.out.println(collectStudentsAge);
+
+        createStreamData().distinct().map(FinalStudent::getName).forEach(System.out::println);
+
+        createStreamData().sorted().map(FinalStudent::getName).forEach(System.out::println);
+
+        long count = createStreamData().sorted().map(FinalStudent::getName).count();
+        System.out.println(count);
+
+        IntStream intStream = createStreamData().map(FinalStudent::getAge).mapToInt(Integer::intValue);
+        intStream.sorted().forEach(System.out::println);
 
 //        System.out.println(streamData);
 //        createStreamData()

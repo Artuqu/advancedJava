@@ -1,5 +1,7 @@
 package functional.domain;
 
+import java.util.Objects;
+
 final public class FinalIndex {
     private String indexNumber;
 
@@ -17,5 +19,18 @@ final public class FinalIndex {
         return "FinalIndex{" +
                 "indexNumber='" + indexNumber + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        FinalIndex that = (FinalIndex) o;
+        return indexNumber.equals(that.indexNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(indexNumber);
     }
 }
